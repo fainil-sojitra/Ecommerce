@@ -36,3 +36,26 @@
     transform: rotate(360deg);
   }
 }
+
+/* ======== google fonts ======== */
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
+
+/* ======= base style ====== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+/* ==== main container style ==== */
+
+.main_container {
+  margin: 0px 40px;
+  /* width: 100%; */
+  /* height: 100vh; */
+  /* display: flex; */
+  /* justify-content: center;
+  align-items: center; */
+  /* background-color: #282c34; */
+}
