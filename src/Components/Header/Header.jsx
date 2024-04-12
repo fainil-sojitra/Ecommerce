@@ -131,7 +131,11 @@ const Header = () => {
 
   return (
     <>
-      <AppBar position="static" className="bg-primary.bg-gradient">
+      <AppBar
+        position="static"
+        className="bg-primary.bg-gradient position-fixed"
+        style={{ zIndex: 1 }}
+      >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <NavLink to={"/home"} variant="body2">

@@ -58,6 +58,11 @@ const Account = () => {
         <List>
           {/* my account information */}
           <div className="Account_main_div">
+            <div className="ac_heading">
+              <h2>
+                <b>My Account</b>
+              </h2>
+            </div>
             <ListItemButton>
               <ListItemText primary="First Name : demo " />
               <TextField type="text" label="First Name" />
@@ -87,7 +92,16 @@ const Account = () => {
             </ListItemButton>
             <hr />
             <ListItemButton>
-              <ListItemText primary="Image : dmeo.jpg " />
+              <ListItemText primary="Image : " />
+              <img
+                src="https://flone.jamstacktemplates.dev/assets/img/slider/single-slide-1.png"
+                alt="img not found"
+                style={{
+                  width: "70px",
+                  height: "70px",
+                  marginRight: "333px",
+                }}
+              />
               <TextField type="file" />
               <Button>Save</Button>
               <Button>Cancel</Button>
