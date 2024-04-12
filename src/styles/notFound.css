@@ -20,13 +20,13 @@
   direction: ltr;
 }
 
-h2 {
+.info h2 {
   width: 20%;
   font-weight: bolder;
   color: red;
 }
 
-h5 {
+.info h5 {
   width: 100%;
   font-weight: bolder;
   color: rgba(255, 0, 0, 0.525);

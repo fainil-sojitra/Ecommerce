@@ -1,0 +1,9 @@
+.profile_main_div {
+  background-color: rgba(250, 246, 203, 0.443);
+  width: 80%;
+  margin: auto;
+  margin-top: 10%;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 37px 3px #adadad;
+}

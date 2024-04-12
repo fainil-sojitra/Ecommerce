@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./login.css";
 import {
   Avatar,
@@ -10,17 +10,124 @@ import {
   Typography,
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+// import axios from "axios";
+import swal from "sweetalert";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+  });
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData({ ...data, [name]: value });
+    setErrors({ ...errors, [name]: validateField(name, value) });
+  };
+
+  const validateField = (fieldName, value) => {
+    let error = "";
+
+    switch (fieldName) {
+      case "email":
+        error = !value.trim()
+          ? "Email is required"
+          : !/^\S+@\S+\.\S+$/.test(value)
+          ? "Email address is invalid"
+          : "";
+        break;
+      case "password":
+        error = !value.trim() ? "Password is required" : "";
+        break;
+      default:
+        break;
+    }
+
+    return error;
+  };
+
+  const handleLogin = async () => {
+    try {
+      // const { email, password } = data;
+      // const response = await axios.post(`${process.env.REACT_APP_API}/login/`, {
+      //   email,
+      //   password,
+      // });
+      // console.log("response---=>", response.data.token);
+      // if (response.data) {
+      //   swal({
+      //     title: "LOGIN SUCCESSFUL!",
+      //     icon: "success",
+      //   });
+      //   setTimeout(() => {
+      //     navigate("/home");
+      //   }, 650);
+      // } else {
+      //   swal({
+      //     title: "LOGIN FAILED!",
+      //     icon: "error",
+      //   });
+      // }
+      let result = await fetch(`${process.env.REACT_APP_API}/login`, {
+        method: "post",
+        body: JSON.stringify({ ...data }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      result = await result.json();
+      if (result.token) {
+        localStorage.setItem(
+          "client_login_token",
+          JSON.stringify(result.token)
+        );
+        localStorage.setItem("client_img", JSON.stringify(result));
+        swal({
+          title: "LOGIN SUCCESSFULLY!",
+          icon: "success",
+        });
+        setTimeout(() => {
+          navigate("/home");
+        }, 950);
+      } else {
+        swal({
+          title: "Invalid email or password!!",
+          text: "LOGIN UNSUCCESSFUL!",
+          icon: "error",
+        });
+      }
+    } catch (error) {
+      return (
+        error,
+        swal({
+          title: "LOGIN UNSUCCESSFUL!",
+          text: "Invalid email or password!!",
+          icon: "error",
+        })
+      );
+    }
+  };
+
+  useEffect(() => {
+    const auth = localStorage.getItem("client_login_token");
+    if (auth) {
+      navigate("/home");
+    }
+  }, [navigate]);
 
   return (
     <>
@@ -65,10 +172,10 @@ const Login = () => {
                   className="mb-2"
                   type="email"
                   name="email"
-                  // value={data.email}
-                  // onChange={handleChange}
-                  // error={!!errors.email}
-                  // helperText={errors.email}
+                  value={data.email}
+                  onChange={handleChange}
+                  error={!!errors.email}
+                  helperText={errors.email}
                   variant="standard"
                   required
                 />
@@ -79,10 +186,10 @@ const Login = () => {
                   className="mb-2"
                   type={showPassword ? "text" : "password"}
                   name="password"
-                  // value={data.password}
-                  // onChange={handleChange}
-                  // error={!!errors.password}
-                  // helperText={errors.password}
+                  value={data.password}
+                  onChange={handleChange}
+                  error={!!errors.password}
+                  helperText={errors.password}
                   variant="standard"
                   required
                   InputProps={{
@@ -101,7 +208,7 @@ const Login = () => {
                   variant="contained"
                   color="primary"
                   type="button"
-                  // onClick={handleLogin}
+                  onClick={handleLogin}
                   fullWidth
                   sx={{ mt: 3 }}
                 >

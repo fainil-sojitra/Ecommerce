@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./registration.css";
 import { Button, IconButton, InputAdornment, TextField } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
@@ -10,7 +10,6 @@ import swal from "sweetalert";
 const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
-
   const [data, setData] = useState({
     first_name: "",
     last_name: "",
@@ -18,10 +17,12 @@ const Registration = () => {
     gender: "",
     email: "",
     password: "",
-    tokens: { token: "" },
   });
-
   const navigate = useNavigate();
+
+  const imageUpload = (event) => {
+    setData({ ...data, image: event.target.files[0] });
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,34 +32,40 @@ const Registration = () => {
     validateField(name, value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    const formData = new FormData();
+    formData.append("first_name", data.first_name);
+    formData.append("last_name", data.last_name);
+    formData.append("image", data.image);
+    formData.append("gender", data.gender);
+    formData.append("email", data.email);
+    formData.append("password", data.password);
 
-    if (validateForm()) {
-      axios
-        .post(`${process.env.REACT_APP_API}/register/`, data)
-        .then((res) => {
-          console.log("Registration successful!", res.data);
-          swal({
-            title: "REGISTRATION SUCCESSFUL!",
-            icon: "success",
-          });
-          setTimeout(() => {
-            navigate("/login");
-          }, 650);
-        })
-        .catch((error) => {
-          console.error("Error registering:", error);
-          swal({
-            title: "REGISTRATION UNSUCCESSFUL!",
-            text: "Please try again later.",
-            icon: "error",
-          });
-        });
-    } else {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_API}/register/`,
+        formData
+      );
+      console.log("Registration successful!", response.data);
+      swal({
+        title: "REGISTRATION SUCCESSFUL!",
+        icon: "success",
+      });
+      setData({
+        first_name: "",
+        last_name: "",
+        image: "",
+        gender: "",
+        email: "",
+        password: "",
+      });
+      navigate("/login");
+    } catch (error) {
+      console.error("Error registering:", error);
       swal({
         title: "REGISTRATION UNSUCCESSFUL!",
-        text: "Please check your inputs and try again.",
+        text: "Please try again later.",
         icon: "error",
       });
     }
@@ -108,14 +115,6 @@ const Registration = () => {
     setErrors({ ...errors, [fieldName]: error });
   };
 
-  const validateForm = () => {
-    for (const [key, value] of Object.entries(data)) {
-      validateField(key, value);
-    }
-
-    return Object.values(errors).every((error) => error === "");
-  };
-
   const validatePassword = (value) => {
     if (!value.trim()) {
       return "Password is required";
@@ -133,6 +132,13 @@ const Registration = () => {
       return "";
     }
   };
+
+  useEffect(() => {
+    const auth = localStorage.getItem("client_login_token");
+    if (auth) {
+      navigate("/home");
+    }
+  }, [navigate]);
 
   return (
     <>
@@ -178,9 +184,9 @@ const Registration = () => {
                   id="image"
                   className="mb-2"
                   name="image"
+                  accept="image/png, image/jpeg"
                   type="file"
-                  value={data.image}
-                  onChange={handleChange}
+                  onChange={imageUpload}
                   error={!!errors.image}
                   helperText={errors.image}
                   variant="standard"
