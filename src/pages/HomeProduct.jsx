@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../styles/homeProduct.css";
+import Rating from "@mui/material/Rating";
+// import Stack from "@mui/material/Stack";
 
 const HomeProduct = () => {
-  // Sample product data
   const products = [
     {
       id: 1,
@@ -37,26 +38,51 @@ const HomeProduct = () => {
       name: "Product 5",
       price: "$50",
       imageUrl:
+        "https://flone.jamstacktemplates.dev/assets/img/product/fashion/28.jpg",
+    },
+    {
+      id: 6,
+      name: "Product 6",
+      price: "$60",
+      imageUrl:
         "https://flone.jamstacktemplates.dev/assets/img/product/fashion/7.jpg",
     },
-    // Add more products as needed
   ];
 
-  // Handle button click event
   const handleButtonClick = (productId) => {
     alert(`Clicked on product ${productId}`);
-    // Implement logic for button click action
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 1);
+  }, []);
 
   return (
     <div className="hp_main_div">
-      <h1>HomeProduct</h1>
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/3081/3081986.png"
+        alt=".png"
+        className="shopping_cart"
+        style={{ height: "60px", width: "60px" }}
+      />
+
+      <h1 className="product-title">OUR PRODUCT</h1>
       <div className="product-list">
         {products.map((product) => (
           <div key={product.id} className="product-card">
-            <img src={product.imageUrl} alt={product.name} />
+            <div className="img_div">
+              <img src={product.imageUrl} alt={product.name} />
+            </div>
             <div className="product-details">
               <h3>{product.name}</h3>
+              {/* <Stack spacing={1}> */}
+              <Rating
+                name="size-small"
+                defaultValue={2}
+                size="small"
+                style={{ overflow: "hidden" }}
+              />
+              {/* </Stack> */}
               <p>{product.price}</p>
               <button onClick={() => handleButtonClick(product.id)}>
                 Add to Cart

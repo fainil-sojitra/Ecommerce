@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/homeSlider.css";
 import Button from "@mui/material/Button";
+import { NavLink } from "react-router-dom";
 
 const HomeSlider = () => {
   return (
@@ -20,7 +21,12 @@ const HomeSlider = () => {
                 color="secondary"
                 style={{ marginRight: "437px", marginTop: "20px" }}
               >
-                SHOP NOW
+                <NavLink
+                  to={"/product"}
+                  style={{ textDecoration: "none", color: "#9500ae" }}
+                >
+                  SHOP NOW
+                </NavLink>
               </Button>
             </div>
           </div>
