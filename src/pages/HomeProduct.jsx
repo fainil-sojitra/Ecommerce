@@ -63,10 +63,10 @@ const HomeProduct = () => {
         src="https://cdn-icons-png.flaticon.com/512/3081/3081986.png"
         alt=".png"
         className="shopping_cart"
-        style={{ height: "60px", width: "60px" }}
+        // style={{ height: "60px", width: "60px" }}
       />
 
-      <h1 className="product-title">OUR PRODUCT</h1>
+      <h1 className="product-title home_prod_title">OUR PRODUCT</h1>
       <div className="product-list">
         {products.map((product) => (
           <div key={product.id} className="product-card">

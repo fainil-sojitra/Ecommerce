@@ -15,6 +15,7 @@
 }
 
 .hp_main_div {
+  text-align: center;
   width: 80%;
   padding: 10px;
   padding-bottom: 55px;
@@ -26,7 +27,7 @@
   margin-bottom: 40px;
 }
 
-.product-title::before {
+.home_prod_title::before {
   display: inline-block;
   content: "";
   border-top: 2px solid black;
@@ -35,7 +36,7 @@
   transform: translateY(-10px);
 }
 
-.product-title::after {
+.home_prod_title::after {
   display: inline-block;
   content: "";
   border-top: 2px solid black;
@@ -102,12 +103,6 @@
   background-color: #0056b3;
 }
 
-@media (max-width: 768px) {
-  .product-card {
-    width: calc(50% - 20px);
-  }
-}
-
 .img_div img:hover {
   transition: transform 0.5s ease;
   -ms-transform: scale(1.5);
@@ -124,5 +119,91 @@
 .shopping_cart {
   top: 20px;
   right: 20px;
+  height: 60px;
+  width: 60px;
   animation: bounce 2s infinite;
+}
+
+/* laptop view */
+@media (max-width: 1024px) {
+  .img_div {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* tablet view */
+@media (max-width: 768px) {
+  .product-card {
+    width: calc(50% - 20px);
+  }
+  .img_div {
+    display: flex;
+    justify-content: center;
+  }
+  .shopping_cart {
+    height: 50px;
+    width: 50px;
+  }
+}
+
+/* mobile L view */
+@media (max-width: 426px) {
+  .product-card {
+    width: calc(100% - 0px);
+  }
+  .home_prod_title {
+    font-size: 20px;
+  }
+  .product-title::before {
+    display: inline-block;
+    content: "";
+    border-top: 1px solid black;
+    width: 3rem;
+    margin: 0 0.5rem;
+    transform: translateY(-7px);
+  }
+  .home_prod_title::after {
+    display: inline-block;
+    content: "";
+    border-top: 1px solid black;
+    width: 3rem;
+    margin: 0 0.5rem;
+    transform: translateY(-7px);
+  }
+  .shopping_cart {
+    height: 40px;
+    width: 40px;
+  }
+}
+
+/* mobile M view */
+@media (max-width: 376px) {
+  .shopping_cart {
+    height: 35px;
+    width: 35px;
+  }
+}
+
+/* mobile S view */
+@media (max-width: 320px) {
+  .home_prod_title {
+    font-size: 18px;
+  }
+  .home_prod_title::before {
+    display: inline-block;
+    content: "";
+    border-top: 1px solid black;
+    width: 2rem;
+    margin: 0 0.5rem;
+    transform: translateY(-6px);
+  }
+  .home_prod_title::after {
+    display: inline-block;
+    content: "";
+    border-top: 1px solid black;
+    width: 2rem;
+    margin: 0 0.5rem;
+    transform: translateY(-6px);
+  }
 }

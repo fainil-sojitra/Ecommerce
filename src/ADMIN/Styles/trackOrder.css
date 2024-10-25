@@ -1,0 +1,9 @@
+.track_order_wrappers {
+  padding: 15px;
+}
+
+.track_order_wrappers img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -1,0 +1,256 @@
+.admin_dashboard_main_wrapper {
+  max-width: 100%;
+  text-align: center;
+  /* border: 1px solid red; */
+}
+/*  */
+/* .demo{} */
+/*  */
+.dash_icon_wrapper {
+  padding-left: 32px;
+  position: relative;
+}
+
+.dash_icon_center {
+  width: 60px;
+  height: 60px;
+  color: white;
+  border-radius: 50px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  transform: translate(15%, -42%);
+}
+
+.dash_content_wrapper {
+  margin-left: 75px;
+  padding-top: 15px;
+  line-height: 0px;
+}
+
+.dash_content_wrapper h5 {
+  font-weight: 300;
+}
+
+.dash_content_wrapper h4 {
+  font-weight: 800;
+  font-size: xx-large;
+}
+
+.dash_chart_wrapper {
+  height: 100%;
+  width: 50%;
+  margin: 0;
+  padding: 0;
+  /* border: 1px solid red !important; */
+}
+
+.dash_chart_wrapper svg {
+  height: 100%;
+  width: 50%;
+  margin: 0;
+  padding: 0;
+  object-fit: contain;
+
+  /* border: 1px solid rgb(0, 38, 255) !important; */
+}
+
+.shadow_box {
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px 0px rgba(173, 176, 177, 0.712);
+}
+
+.dash_product_wrapper {
+  margin: auto;
+  border-radius: 20px;
+  width: 50%;
+  overflow: hidden;
+  background-color: #c0e1fc;
+}
+
+.dash_product_wrapper img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.dash_user_wrapper {
+  width: 80%;
+  height: 80%;
+  /* border-radius: 50%; */
+  /* margin: auto; */
+  /* border-radius: 20px; */
+  /* background-color: #c0e1fc; */
+}
+
+.dash_user_wrapper img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 100%;
+}
+
+/*  4k */
+@media only screen and (max-width: 2560px) {
+  .dash_chart_wrapper {
+    width: 100%;
+    /* border: 1px solid blue; */
+  }
+
+  .dash_chart_wrapper svg {
+    max-width: 100%;
+    margin-right: auto;
+    /* border: 1px solid red; */
+  }
+  .chart_div {
+    width: 100%;
+  }
+  .chart_div svg {
+    height: 50%;
+    max-width: 100%;
+    margin-right: auto;
+  }
+}
+
+/* L laptop */
+@media only screen and (max-width: 1440px) {
+  .dash_chart_wrapper {
+    width: 100%;
+    /* border: 1px solid blue; */
+  }
+
+  .dash_chart_wrapper svg {
+    max-width: 87%;
+    margin-right: auto;
+    /* border: 1px solid red; */
+  }
+}
+
+/* tablet */
+@media only screen and (max-width: 768px) {
+  .dash_chart_wrapper {
+    width: 100%;
+  }
+
+  .dash_chart_wrapper svg {
+    max-width: 100%;
+  }
+}
+
+/* L mobile */
+@media only screen and (max-width: 425px) {
+  .dash_chart_wrapper {
+    width: 100%;
+  }
+  
+  .dash_chart_wrapper svg {
+    max-width: 100%;
+    margin-right: auto;
+  }
+  .chart_div {
+    height: 50%;
+    width: 100%;
+    border: 1px solid blue;
+  }
+  .chart_div svg {
+    max-width: 70%;
+    margin-right: auto;
+    border: 1px solid red;
+  }
+  .titles_div p {
+    font-size: 18px !important;
+  }
+  .prod_name_div p {
+    font-size: 15px !important;
+  }
+  .prod_cpn_div p {
+    font-size: 12px !important;
+  }
+  .prod_dic_div p {
+    font-size: 13px !important;
+  }
+  .dash_user_wrapper {
+    height: 100%;
+    /* border: 1px solid red; */
+    padding-top: 10px;
+  }
+  .title_h6 {
+    font-size: 13px !important;
+  }
+}
+
+/* M mobile */
+@media only screen and (max-width: 375px) {
+  .dash_chart_wrapper {
+    width: 100%;
+    /* border: 1px solid blue; */
+  }
+
+  .dash_chart_wrapper svg {
+    max-width: 80%;
+    margin-right: auto;
+  }
+  .chart_div {
+    height: 50%;
+    width: 100%;
+  }
+  .chart_div svg {
+    max-width: 70%;
+    margin-right: auto;
+  }
+  .titles_div p {
+    font-size: 16px !important;
+  }
+  .prod_name_div p {
+    font-size: 13px !important;
+  }
+  .prod_cpn_div p {
+    font-size: 11px !important;
+  }
+  .prod_dic_div p {
+    font-size: 12px !important;
+  }
+  .dash_user_wrapper {
+    height: 100%;
+    /* border: 1px solid red; */
+    padding-top: 10px;
+  }
+  .title_h6 {
+    font-size: 13px !important;
+  }
+}
+
+/* s mobile */
+@media only screen and (max-width: 320px) {
+  .dash_chart_wrapper {
+    width: 100%;
+    /* border: 1px solid blue; */
+  }
+  .dash_chart_wrapper svg {
+    max-width: 65%;
+    margin-right: auto;
+  }
+  .chart_div {
+    width: 100%;
+  }
+  .chart_div svg {
+    max-width: 70%;
+    margin-right: auto;
+  }
+
+
+  .titles_div p{
+    font-size: 14px !important;
+  }
+  .prod_name_div p{
+    font-size: 11px !important;
+  }
+  .prod_cpn_div p{
+    font-size: 9px !important;
+  }
+  .prod_dic_div p{
+    font-size: 10px !important;
+  }
+  .title_h6{
+    font-size: 10px !important;
+  }
+}

@@ -1,0 +1,25 @@
+.tablet_main_container {
+  padding-top: 64px;
+  padding-bottom: 65px;
+  margin: 0px 25px !important;
+  height: 100%;
+}
+
+.drop_down_div {
+  width: 94%;
+}
+
+@media only screen and (max-width: 376px) {
+  .drop_down_div {
+    width: 325px !important;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .tablet_main_container {
+    padding-top: 75px !important;
+  }
+  .drop_down_div {
+    width: 270px !important;
+  }
+}

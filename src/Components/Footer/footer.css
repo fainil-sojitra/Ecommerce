@@ -1,22 +1,22 @@
 .footer {
-  background: #1976d2;
+  background: #f0f0f0;
   padding-top: 50px;
   padding-bottom: 15px;
   box-shadow: 5px 5px 30px black;
 }
 
 .footer__logo i {
-  color: #fff;
+  color: #000000;
   font-weight: 400;
 }
 
 .footer__logo span {
-  color: #fff;
+  color: #000000;
   font-weight: 500;
 }
 
 .footer__logo-content {
-  color: rgba(255, 255, 255, 0.715);
+  color: rgba(0, 0, 0, 0.715);
   margin-top: 15px;
   line-height: 30px;
 }
@@ -27,7 +27,7 @@
 }
 
 .quick__link a {
-  color: rgba(255, 255, 255, 0.715);
+  color: rgba(0, 0, 0, 0.715);
   text-decoration: none;
   font-weight: 300;
   transition: 0.3s;
@@ -38,11 +38,11 @@
 }
 
 .footer__link-title {
-  color: #fff;
+  color: #000000;
 }
 
 .office__info {
-  color: rgba(255, 255, 255, 0.715);
+  color: rgba(0, 0, 0, 0.715);
   font-weight: 300;
 }
 
@@ -53,7 +53,7 @@
   padding: 8px 12px;
   border: 1px solid #7c8a972f;
   border-radius: 50px;
-  background: #ffffff;
+  background: #000000;
 }
 
 .newsletter input {
@@ -64,7 +64,7 @@
 }
 
 .newsletter span i {
-  color: #fff;
+  color: #000000;
 }
 
 .footer__bottom {

@@ -1,0 +1,33 @@
+.main_container {
+  padding-top: 90px;
+  padding-bottom: 65px;
+  margin: 0px 140px !important;
+  height: 100%;
+  /* border: 1px solid red; */
+}
+
+.list_item_div {
+  background-color: #f5f5f5;
+  height: 100;
+}
+
+.list_item_div h3 {
+  /* margin: 3px 0; */
+  padding: 9px 0;
+  text-align: center;
+  /* border-bottom: 2px solid #c7c7c762; */
+}
+
+/* laptop */
+@media only screen and (max-width: 1024px) {
+  .main_container {
+    margin: 0px 90px !important;
+  }
+}
+
+/* tablet */
+@media only screen and (max-width: 768px) {
+  .main_container {
+    margin: 0px 20px !important;
+  }
+}

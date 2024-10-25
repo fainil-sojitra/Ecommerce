@@ -62,26 +62,6 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      // const { email, password } = data;
-      // const response = await axios.post(`${process.env.REACT_APP_API}/login/`, {
-      //   email,
-      //   password,
-      // });
-      // console.log("response---=>", response.data.token);
-      // if (response.data) {
-      //   swal({
-      //     title: "LOGIN SUCCESSFUL!",
-      //     icon: "success",
-      //   });
-      //   setTimeout(() => {
-      //     navigate("/home");
-      //   }, 650);
-      // } else {
-      //   swal({
-      //     title: "LOGIN FAILED!",
-      //     icon: "error",
-      //   });
-      // }
       let result = await fetch(`${process.env.REACT_APP_API}/login`, {
         method: "post",
         body: JSON.stringify({ ...data }),
@@ -90,6 +70,7 @@ const Login = () => {
         },
       });
       result = await result.json();
+      if(result.register.role === 'user'){
       if (result.token) {
         localStorage.setItem(
           "client_login_token",
@@ -110,6 +91,13 @@ const Login = () => {
           icon: "error",
         });
       }
+    }else{
+      swal({
+        title: "You Are not user!!",
+        text: "LOGIN UNSUCCESSFUL!",
+        icon: "error",
+      });
+    }
     } catch (error) {
       return (
         error,

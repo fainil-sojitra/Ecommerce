@@ -1,8 +1,7 @@
 import React from "react";
-
+import "./footer.css";
 import { Container, Row, Col, ListGroup, ListGroupItem } from "reactstrap";
 import { Link } from "react-router-dom";
-import "./footer.css";
 
 const quickLinks = [
   {
@@ -16,8 +15,8 @@ const quickLinks = [
   },
 
   {
-    path: "/cars",
-    display: "Cars",
+    path: "/product",
+    display: "Product",
   },
   {
     path: "/blogs",
@@ -61,10 +60,13 @@ const Footer = () => {
 
           <Col lg="2" md="4" sm="6">
             <div className="mb-4">
-              <h5 className="footer__link-title">Quick Links</h5>
+              <p className="footer__link-title">Quick Links</p>
               <ListGroup>
                 {quickLinks.map((item, index) => (
-                  <ListGroupItem key={index} className="p-0 mt-3 quick__link">
+                  <ListGroupItem
+                    key={index}
+                    className="p-0 mt-3 quick__link position-static"
+                  >
                     <Link to={item.path}>{item.display}</Link>
                   </ListGroupItem>
                 ))}
@@ -74,7 +76,7 @@ const Footer = () => {
 
           <Col lg="3" md="4" sm="6">
             <div className="mb-4">
-              <h5 className="footer__link-title mb-4">Head Office</h5>
+              <p className="footer__link-title mb-4">Head Office</p>
               <p className="office__info">
                 123 Royal Bazar, Katargam,
                 <br /> Surat, Gujrat
@@ -87,7 +89,7 @@ const Footer = () => {
 
           <Col lg="3" md="4" sm="12">
             <div className="mb-4">
-              <h5 className="footer__link-title">Newsletter</h5>
+              <p className="footer__link-title">Newsletter</p>
               <p className="section__description">Subscribe our newsletter</p>
               <div className="newsletter">
                 <input type="email" placeholder="Email" />

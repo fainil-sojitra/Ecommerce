@@ -11,10 +11,12 @@ const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [data, setData] = useState({
+    role: "user",
     first_name: "",
     last_name: "",
     image: "",
     gender: "",
+    mobileNo: "",
     email: "",
     password: "",
   });
@@ -28,23 +30,24 @@ const Registration = () => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
 
-    // Validate the field as the user types
     validateField(name, value);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
+    formData.append("role", data.role);
     formData.append("first_name", data.first_name);
     formData.append("last_name", data.last_name);
     formData.append("image", data.image);
     formData.append("gender", data.gender);
+    formData.append("mobileNo", data.mobileNo);
     formData.append("email", data.email);
     formData.append("password", data.password);
 
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API}/register/`,
+        `${process.env.REACT_APP_API}/register`,
         formData
       );
       console.log("Registration successful!", response.data);
@@ -53,10 +56,12 @@ const Registration = () => {
         icon: "success",
       });
       setData({
+        role: "user",
         first_name: "",
         last_name: "",
         image: "",
         gender: "",
+        mobileNo: "",
         email: "",
         password: "",
       });
@@ -154,7 +159,7 @@ const Registration = () => {
                   fullWidth
                   label="Your First Name"
                   id="first_name"
-                  className="mb-2"
+                  className="mb-1"
                   name="first_name"
                   value={data.first_name}
                   onChange={handleChange}
@@ -168,7 +173,7 @@ const Registration = () => {
                   fullWidth
                   label="Your Last Name"
                   id="last_name"
-                  className="mb-2"
+                  className="mb-1"
                   name="last_name"
                   value={data.last_name}
                   onChange={handleChange}
@@ -179,13 +184,13 @@ const Registration = () => {
                 />
 
                 <TextField
+                  type="file"
                   fullWidth
                   label="Your Image"
                   id="image"
-                  className="mb-2"
-                  name="image"
+                  className="mb-1"
                   accept="image/png, image/jpeg"
-                  type="file"
+                  name="image"
                   onChange={imageUpload}
                   error={!!errors.image}
                   helperText={errors.image}
@@ -197,7 +202,7 @@ const Registration = () => {
                   fullWidth
                   label="Your Gender"
                   id="gender"
-                  className="mb-2"
+                  className="mb-1"
                   name="gender"
                   value={data.gender}
                   onChange={handleChange}
@@ -209,9 +214,23 @@ const Registration = () => {
 
                 <TextField
                   fullWidth
+                  label="Your mobile No"
+                  id="mobile"
+                  className="mb-1"
+                  name="mobileNo"
+                  value={data.mobileNo}
+                  onChange={handleChange}
+                  error={!!errors.mobileNo}
+                  helperText={errors.mobileNo}
+                  variant="standard"
+                  required
+                />
+
+                <TextField
+                  fullWidth
                   label="Your Email"
                   id="email"
-                  className="mb-2"
+                  className="mb-1"
                   name="email"
                   type="email"
                   value={data.email}
@@ -226,7 +245,7 @@ const Registration = () => {
                   fullWidth
                   label="Your Password"
                   id="password"
-                  className="mb-2"
+                  className="mb-1"
                   name="password"
                   type={showPassword ? "text" : "password"}
                   value={data.password}
@@ -269,7 +288,7 @@ const Registration = () => {
             </div>
           </div>
           <div className="right_div">
-            <div className="img_div">
+            <div className="register_mg_div">
               <img
                 src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
                 className="img-fluid"

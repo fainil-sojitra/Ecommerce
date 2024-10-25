@@ -3,28 +3,32 @@
   height: 50px;
   margin-top: 55px;
   margin-bottom: 55px;
-  /* border: 1px solid black; */
 }
 
 .features_main_div div {
   height: 100%;
-  /* border: 1px solid red; */
+  /* position: relative; */
 }
 
-.support-icon {
+.icon_content {
   margin-right: 5px;
 }
 
-.support-content h4 {
+.icon_content h4 {
+  position: absolute;
+  margin-left: 5px;
   font-size: 15px;
   font-weight: 600;
-  margin-top: 4px;
-  margin-bottom: 0px;
+  margin-top: 3px;
 }
 
-.support-content h5 {
-  font-size: 15px;
+.icon_content h5 {
+  /* position: absolute; */
+  width: 100%;
+  left: 200;
+  font-size: 13px;
   margin-left: 5px;
+  margin-top: 24px;
 }
 
 @keyframes tada-animation {
@@ -55,19 +59,87 @@
   animation: tada-animation 0.5s ease forwards;
 }
 
-/* Responsive adjustments */
+/* tablet view */
 @media (max-width: 768px) {
   .features_main_div {
-    width: 90%;
-    margin-top: 35px;
-    margin-bottom: 35px;
+    width: 60%;
+    height: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    line-height: 3;
+    margin-left: 165px;
   }
-
+  .icon_content {
+    position: relative;
+  }
   .support-content h4 {
     font-size: 13px;
+    margin-top: 5px;
+    width: 145px;
   }
-
   .support-content h5 {
     font-size: 13px;
+    margin-top: 22px;
+    width: 145px;
+  }
+}
+
+/* mobile L view */
+@media (max-width: 426px) {
+  .features_main_div {
+    width: 60%;
+    margin: auto;
+    margin-top: 25px;
+    margin-bottom: 40px;
+    line-height: 2;
+    margin-left: 135px;
+  }
+  .icon_content {
+    position: relative;
+  }
+  .icon_img {
+    width: 20px;
+    height: 20px;
+  }
+  .support-content h4 {
+    font-size: 9px;
+    margin-top: 5px;
+    width: 145px;
+  }
+  .support-content h5 {
+    font-size: 9px;
+    margin-top: 22px;
+    width: 145px;
+  }
+}
+
+/* mobile M view */
+@media (max-width: 376px) {
+  .features_main_div {
+    margin-left: 110px;
+  }
+}
+
+/* mobile S view */
+@media (max-width: 320px) {
+  .features_main_div {
+    margin-left: 90px;
+  }
+  .icon_content {
+    position: relative;
+  }
+  .icon_img {
+    width: 20px;
+    height: 20px;
+  }
+  .support-content h4 {
+    font-size: 9px;
+    margin-top: 5px;
+    width: 145px;
+  }
+  .support-content h5 {
+    font-size: 9px;
+    margin-top: 22px;
+    width: 145px;
   }
 }

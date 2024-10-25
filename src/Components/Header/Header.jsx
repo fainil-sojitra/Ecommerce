@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./header.css";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -12,10 +12,10 @@ import Avatar from "@mui/material/Avatar";
 // import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
-import Profile from "../../pages/Profile";
-import Account from "../../pages/Account";
+import { Badge } from "@mui/material";
+import axios from "axios";
 
 const pages = [
   {
@@ -40,7 +40,6 @@ const pages = [
     display: "Contact",
   },
 ];
-// const settings = ["Profile", "Account", "Logout"];
 
 const navLinks = [
   {
@@ -70,6 +69,7 @@ const ITEM_HEIGHT = 45;
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [data, setData] = useState([])
 
   const navigate = useNavigate();
 
@@ -87,16 +87,13 @@ const Header = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  // console.log(settings[2]);
 
   const handleClick = (e) => {
     console.log(e.target.value);
 
     if (e.target.value === 1) {
-      navigate("/profile");
+      navigate("/setting");
     } else if (e.target.value === 2) {
-      navigate("/account");
-    } else if (e.target.value === 3) {
       logOut();
     } else {
       navigate("/home");
@@ -125,6 +122,23 @@ const Header = () => {
     });
   };
 
+  const countCartData = async () => {
+    try {
+      const userData = JSON.parse(localStorage.getItem("client_img"));
+      const response = await axios.get(
+        `${process.env.REACT_APP_API}/count_cart_product/${userData.register._id}`
+      );
+      setData(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    countCartData()
+  },[])
+
+
   const menuRef = useRef(null);
 
   const toggleMenu = () => menuRef.current.classList.toggle("menu__active");
@@ -134,7 +148,7 @@ const Header = () => {
       <AppBar
         position="static"
         className="bg-primary.bg-gradient position-fixed"
-        style={{ zIndex: 1 }}
+        style={{ zIndex: 1, backgroundColor: "#f0f0f0" }}
       >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
@@ -163,7 +177,7 @@ const Header = () => {
               <NavLink
                 to={"/home"}
                 variant="body2"
-                className="text-light text-decoration-none"
+                className="text-dark text-decoration-none"
               >
                 E-Shop
               </NavLink>
@@ -176,6 +190,7 @@ const Header = () => {
                 aria-haspopup="true"
                 onClick={handleOpenNavMenu}
                 color="inherit"
+                className="text-dark"
               >
                 <MenuIcon />
               </IconButton>
@@ -239,7 +254,7 @@ const Header = () => {
               <NavLink
                 to={"/home"}
                 variant="body2"
-                className="text-light text-decoration-none"
+                className="text-dark text-decoration-none"
               >
                 E-Shop
               </NavLink>
@@ -288,24 +303,55 @@ const Header = () => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                <MenuItem value={1} onClick={handleClick}>
-                  <Profile />
-                </MenuItem>
-                <MenuItem value={2} onClick={handleClick}>
-                  <Account />
-                </MenuItem>
+                <NavLink
+                  to={"/setting"}
+                  variant="body2"
+                  className="text-dark text-decoration-none"
+                >
+                  <MenuItem
+                    value={1}
+                    onClick={handleClick}
+                    style={{
+                      marginLeft: "10px",
+                      marginRight: "10px",
+                      color: "#1976D2",
+                      fontSize: "14px",
+                    }}
+                  >
+                    SETTINGS
+                  </MenuItem>
+                </NavLink>
                 <MenuItem
-                  value={3}
+                  value={2}
                   onClick={handleClick}
                   style={{
                     marginLeft: "10px",
+                    marginRight: "10px",
                     color: "#1976D2",
-                    fontSize: "14.5px",
+                    fontSize: "14px",
                   }}
                 >
                   LOGOUT
                 </MenuItem>
               </Menu>
+              <Link to={`/my-cart`}>
+                <Badge
+                  className="header_cart-img"
+                  color="primary"
+                  badgeContent={data.cartData}
+                >
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/3081/3081986.png"
+                    alt=".png"
+                    className="header_cart-img"
+                    style={{
+                      height: "35px",
+                      width: "35px",
+                      marginLeft: "15px",
+                    }}
+                  />
+                </Badge>
+              </Link>
             </Box>
           </Toolbar>
         </Container>

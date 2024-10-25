@@ -1,0 +1,16 @@
+@media only screen and (max-width: 426px) {
+  .tablet_main_container {
+    padding-top: 55px;
+  }
+  .drop_down_div {
+    width: 374px;
+  }
+  .contact_div {
+    width: 100%;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.406);
+  }
+  .address_div {
+    width: 100%;
+    margin-top: 30px;
+  }
+}
