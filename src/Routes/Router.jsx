@@ -117,7 +117,7 @@ const Router = () => {
       {/* Login id password : fainilsojitra@gmail.com : Fainil@1104 */}
       <Routes>
         <Route element={<PrivateComponent />}>
-          <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="/" element={<Login />} />
           <Route path="/home" element={<Home />} />
           <Route path="/product" element={<Products />} />
           <Route path="/product_details/:slug" element={<ProductDetails />} />
